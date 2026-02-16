@@ -1,0 +1,30 @@
+-- Total Completed Rides
+SELECT COUNT(*) AS total_completed
+FROM uber_data
+WHERE ride_status = 'Completed';
+
+-- Total Revenue
+SELECT SUM(fare_amount) AS total_revenue
+FROM uber_data;
+
+-- Total Distance
+SELECT SUM(distance_km) AS total_distance
+FROM uber_data;
+
+-- Lost Users
+SELECT COUNT(*) AS lost_users
+FROM uber_data
+WHERE ride_status = 'Cancelled';
+
+-- Revenue by Vehicle Type
+SELECT vehicle_type,
+       SUM(fare_amount) AS revenue
+FROM uber_data
+GROUP BY vehicle_type;
+
+-- Monthly Revenue
+SELECT MONTH(date) AS month,
+       SUM(fare_amount) AS monthly_revenue
+FROM uber_data
+GROUP BY MONTH(date)
+ORDER BY month;
